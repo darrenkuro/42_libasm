@@ -5,7 +5,8 @@ extern	__errno_location
 ft_write:			; rdi, rsi, rdx for parameters
 	mov		rax, 1	; rax - 64bits, eax - 32, using eax also works, 1 - write syscall
 	syscall
-	js		errno	; check sign flag (SF) which is assigned by syscall if it's neg
+	cmp		rax, 0	; rax - 0, check for neg, sets the flags
+	js		errno	; check sign flag (SF) which is assigned by syscall if it's neg; in this case, jl works too
 	ret
 
 errno:
