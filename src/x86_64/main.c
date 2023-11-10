@@ -15,5 +15,6 @@ int main() {
     printf("errno: %d, msg: %s\n", errno, strerror(errno));
     printf("%d\n", ft_strcmp("abc", " 1def"));
     printf("%d\n", strcmp("abc", " 1def"));
+    printf("%zu\n", ft_strlen("abc"));
     return 0;
 }
