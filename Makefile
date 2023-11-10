@@ -26,16 +26,9 @@ AS		:=	nasm
 ASFLAGS	:=	-f elf64
 AR		:=	ar rcs
 RM		:=	rm -rf
-LDFLAGS	:=	-L$(LIBDIR) -lasm
-
-
-# ifeq ($(shell uname -s), Darwin)
-# 	SRC		:=	$(addprefix $(SRCDIR)/arm64/, $(_SRC))
-# 	OBJ		:=	$(addprefix $(OBJDIR)/arm64/, $(_SRC:.s=.o))
-# else ifeq ($(shell uname -s), Linux)
-# 	SRC		:=	$(addprefix $(SRCDIR)/x86_64/, $(_SRC))
-# 	OBJ		:=	$(addprefix $(OBJDIR)/x86_64/, $(_SRC:.s=.o))
-# endif
+LDFLAGS	:=	-L$(LIBDIR)
+LDLIBS	:=	-lasm
+MUTE	:=	>/dev/null
 
 .PHONY: all clean fclean re test
 
@@ -57,7 +50,7 @@ fclean: clean
 re: fclean all
 
 test: $(NAME)
-	@$(CC) $(CFLAGS) $(SRCDIR)/$(_TEST) $(LDFLAGS) -o $@ >/dev/null
+	@$(CC) $(CFLAGS) $(SRCDIR)/$(_TEST) $(LDFLAGS) $(LDLIBS) -o $@ $(MUTE)
 	@./$@
 	@$(RM) $@
 
