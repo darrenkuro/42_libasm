@@ -8,11 +8,15 @@ ifeq ($(shell uname -s), Darwin)
 	OBJDIR	:=	bin/arm64
 	SRC		:=	$(addprefix $(SRCDIR)/, $(_SRC))
 	OBJ		:=	$(addprefix $(OBJDIR)/, $(_SRC:.s=.o))
+	AS		:=	as
+	ASFLAGS	:=
 else ifeq ($(shell uname -s), Linux)
 	SRCDIR	:=	src/x86_64
 	OBJDIR	:=	bin/x86_64
 	SRC		:=	$(addprefix $(SRCDIR)/, $(_SRC))
 	OBJ		:=	$(addprefix $(OBJDIR)/, $(_SRC:.s=.o))
+	AS		:=	nasm
+	ASFLAGS	:=	-f elf64
 endif
 
 LIBDIR	:=	lib
@@ -22,8 +26,6 @@ NAME	:=	$(addprefix $(LIBDIR)/, $(_NAME))
 
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
-AS		:=	nasm
-ASFLAGS	:=	-f elf64
 AR		:=	ar rcs
 RM		:=	rm -rf
 LDFLAGS	:=	-L$(LIBDIR)
