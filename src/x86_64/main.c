@@ -8,7 +8,7 @@ ssize_t ft_write(int fd, void const *buf, size_t count);
 int ft_strcmp(char const *_Nonnull s1, char const *_Nonnull s2);
 size_t ft_strlen(char const *_Nonnull s);
 char *ft_strcpy(char *_Nonnull dest, char const *_Nonnull src);
-char *ft_strdup(char const *s);
+char *ft_strdup(char const *_Nonnull s);
 
 int main() {
     ft_write(1, "hello\n", 6);
