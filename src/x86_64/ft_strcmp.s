@@ -6,11 +6,10 @@ ft_strcmp:
 
 compare:
 	mov	al, byte [rdi]
-	mov ah, byte [rsi]
-	cmp	al, ah
+	cmp	al, byte [rsi]
 	jl	return_lesser
 	jg	return_greater
-	cmp byte [rdi], 0
+	cmp al, 0
 	je	return_zero
 	inc	rdi
 	inc rsi

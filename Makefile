@@ -55,7 +55,3 @@ test: $(NAME)
 	@$(CC) $(CFLAGS) $(SRCDIR)/$(_TEST) $(LDFLAGS) $(LDLIBS) -o $@ $(MUTE)
 	@./$@
 	@$(RM) $@
-
-mac:
-	as -arch arm64 src/ft_write.s -o src/ft_write.o
-	ar rcs $(NAME) src/ft_write.o
